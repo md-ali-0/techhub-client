@@ -52,7 +52,7 @@ const Header = () => {
                             <BiCart size={25}></BiCart>
                         </button>
                         <button>
-                            <BiPlusCircle size={25}></BiPlusCircle>
+                            <Link to='/add-product'><BiPlusCircle size={25}></BiPlusCircle></Link>
                         </button>
                         <div className="text-lg">
                             {user ? (

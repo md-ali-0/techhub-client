@@ -37,7 +37,7 @@ const AddCategory = () => {
                         </label>
                         <input
                             type="text"
-                            className="border focus:outline-none rounded py-2 px-3 dark:bg-slate-700 dark:text-slate-200 dark:border-slate-500 w-full md:w-3/4"
+                            className="border focus:outline-none rounded py-2 px-3 dark:bg-slate-700 dark:text-slate-200 dark:border-slate-600 w-full md:w-3/4"
                             name="name"
                             id="name"
                             placeholder="Enter Category Name"
@@ -49,7 +49,7 @@ const AddCategory = () => {
                         </label>
                         <input
                             type="text"
-                            className="border focus:outline-none rounded py-2 px-3 dark:bg-slate-700 dark:text-slate-200 dark:border-slate-500 w-full md:w-3/4"
+                            className="border focus:outline-none rounded py-2 px-3 dark:bg-slate-700 dark:text-slate-200 dark:border-slate-600 w-full md:w-3/4"
                             name="image"
                             id="image"
                             placeholder="Enter Category Image URL"
@@ -58,7 +58,7 @@ const AddCategory = () => {
                     <button
                         type="submit"
                         className="text-white bg-slate-800 hover:bg-slate-900 focus:outline-none focus:ring-0 font-medium rounded-md text-sm px-5 py-2.5 text-center dark:bg-slate-600 dark:hover:bg-slate-700 my-2">
-                        Create Brand
+                        Create Category
                     </button>
                 </form>
             </div>
