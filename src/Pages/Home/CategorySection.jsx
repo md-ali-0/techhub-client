@@ -1,14 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-const BrandsSection = () => {
-    const [brands, setBrands] = useState([]);
+const CategorySection = () => {
+    const [categories, setCategories] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:8080/brands')
+        fetch('http://localhost:8080/categories')
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
-                setBrands(data);
+                setCategories(data);
             })
             .catch((err) => {
                 console.log(err);
@@ -16,18 +16,18 @@ const BrandsSection = () => {
     }, []);
     return (
         <section className="container mx-auto py-5 px-3">
-            <h3 className='text-3xl text-center font-bold py-3'>Brands</h3>
+            <h3 className='text-3xl text-center font-bold py-3'>Categories</h3>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
-                {brands.map((brand) => (
-                    <div key={brand._id} className='py-3'>
-                        <Link to={`/brand/${brand._id}`}>
+                {categories.map((category) => (
+                    <div key={category._id} className='bg-white dark:bg-slate-600 rounded-lg py-3 px-3'>
+                        <Link to={`/category/${category._id}`}>
                             <img
                                 className="mx-auto rounded-md"
-                                src={brand.image}
-                                alt={brand.name}
+                                src={category.image}
+                                alt={category.name}
                             />
                             <h3 className="text-xl font-semibold text-center">
-                                {brand.name}
+                                {category.name}
                             </h3>
                         </Link>
                     </div>
@@ -37,4 +37,4 @@ const BrandsSection = () => {
     );
 };
 
-export default BrandsSection;
+export default CategorySection;

@@ -79,6 +79,9 @@ const Header = () => {
                                                     <Link to='/add-brand'>Add Brand</Link>
                                                 </li>
                                                 <li className="p-2 text-lg cursor-pointer rounded hover:bg-slate-100 dark:hover:bg-slate-700">
+                                                    <Link to='/add-category'>Add Category</Link>
+                                                </li>
+                                                <li className="p-2 text-lg cursor-pointer rounded hover:bg-slate-100 dark:hover:bg-slate-700">
                                                     Profile
                                                 </li>
                                                 <li className="p-2 text-lg cursor-pointer rounded hover:bg-slate-100 dark:hover:bg-slate-700">

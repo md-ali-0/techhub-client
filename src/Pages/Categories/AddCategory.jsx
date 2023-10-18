@@ -1,16 +1,16 @@
 import { toast } from 'react-toastify';
 
-const AddBrand = () => {
-    const createBrand = (e) => {
+const AddCategory = () => {
+    const addCategory = (e) =>{
         e.preventDefault();
         const form = e.target;
         const name = form.name.value;
         const image = form.image.value;
         console.log(name, image);
-        const newBrand = { name, image };
-        fetch('http://localhost:8080/add-brand', {
+        const newCategory = { name, image };
+        fetch('http://localhost:8080/add-category', {
             method: 'POST',
-            body: JSON.stringify(newBrand),
+            body: JSON.stringify(newCategory),
             headers: {
                 "Content-Type": "application/json"
             }
@@ -19,7 +19,7 @@ const AddBrand = () => {
         .then(data=>{
             console.log(data);
             if (data.insertedId) {
-                toast.success('Brand Added Successfully!')
+                toast.success('Category Added Successfully!')
                 form.reset()
             }
         })
@@ -30,29 +30,29 @@ const AddBrand = () => {
     return (
         <div className="container mx-auto py-5 px-3">
             <div className="bg-white rounded-md shadow-md py-3 px-5 dark:bg-slate-900 md:w-3/4 mx-auto">
-                <form onSubmit={createBrand}>
+                <form onSubmit={addCategory}>
                     <div className="py-2">
                         <label htmlFor="name" className="block text-lg py-2">
-                            Brand Name:
+                            Category Name:
                         </label>
                         <input
                             type="text"
                             className="border focus:outline-none rounded py-2 px-3 dark:bg-slate-700 dark:text-slate-200 dark:border-slate-500 w-full md:w-3/4"
                             name="name"
                             id="name"
-                            placeholder="Enter Brand Name"
+                            placeholder="Enter Category Name"
                         />
                     </div>
                     <div className="pb-2">
                         <label htmlFor="image" className="block text-lg py-2">
-                            Brand Image Url:
+                            Category Image Url:
                         </label>
                         <input
                             type="text"
                             className="border focus:outline-none rounded py-2 px-3 dark:bg-slate-700 dark:text-slate-200 dark:border-slate-500 w-full md:w-3/4"
                             name="image"
                             id="image"
-                            placeholder="Enter Brand Image URL"
+                            placeholder="Enter Category Image URL"
                         />
                     </div>
                     <button
@@ -66,4 +66,4 @@ const AddBrand = () => {
     );
 };
 
-export default AddBrand;
+export default AddCategory;
