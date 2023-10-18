@@ -20,7 +20,7 @@ const Header = () => {
     } else {
         document.documentElement.classList.remove('dark');
     }
-    const user = false;
+    const user = true;
     const [open, setOpen] = useState(false);
     const [userProfile, setUserProfile] = useState(false);
 
