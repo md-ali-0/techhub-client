@@ -9,6 +9,8 @@ import {
     BiX,
 } from 'react-icons/bi';
 import { Link, NavLink } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import dakLogo from '/dark-logo.png';
 import lightLogo from '/light-logo.png';
 import userLogo from '/user.png';
@@ -68,10 +70,13 @@ const Header = () => {
                                     </button>
                                     {userProfile && (
                                         <div
-                                            className={`absolute right-0 top-[70px] bg-white dark:bg-slate-900 rounded shadow-xl w-52 p-4`}>
+                                            className={`absolute right-0 top-[70px] z-50 bg-white dark:bg-slate-900 rounded shadow-xl w-52 p-4`}>
                                             <ul className="flex flex-col gap-2">
                                                 <li className="p-2 text-lg cursor-pointer rounded hover:bg-slate-100 dark:hover:bg-slate-700">
                                                     Mohammad Ali
+                                                </li>
+                                                <li className="p-2 text-lg cursor-pointer rounded hover:bg-slate-100 dark:hover:bg-slate-700">
+                                                    <Link to='/add-brand'>Add Brand</Link>
                                                 </li>
                                                 <li className="p-2 text-lg cursor-pointer rounded hover:bg-slate-100 dark:hover:bg-slate-700">
                                                     Profile
@@ -142,6 +147,7 @@ const Header = () => {
                     </div>
                 </nav>
             </div>
+            <ToastContainer />
         </header>
     );
 };
