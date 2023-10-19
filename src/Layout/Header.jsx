@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import {
-    BiCart,
-    BiMenu,
-    BiMoon,
-    BiPlusCircle,
-    BiSun,
-    BiUserCircle,
-    BiX,
-} from 'react-icons/bi';
+    PiListThin,
+    PiMoonThin,
+    PiPlusCircleLight,
+    PiShoppingCartLight,
+    PiSunLight,
+    PiUserCircleThin,
+    PiXThin
+} from 'react-icons/pi';
 import { Link, NavLink } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -27,7 +27,7 @@ const Header = () => {
     const [userProfile, setUserProfile] = useState(false);
 
     return (
-        <header className="shadow bg-white dark:bg-slate-900 dark:text-gray-100 duration-100">
+        <header className="shadow bg-white dark:bg-[#111827] dark:text-gray-100 duration-100">
             <div className="container mx-auto px-3">
                 <nav className="flex justify-between flex-wrap items-center py-6">
                     <Link to="/">
@@ -43,16 +43,23 @@ const Header = () => {
                                 setDarkMode(!darkMode);
                             }}>
                             {darkMode ? (
-                                <BiMoon size={25}></BiMoon>
+                                <PiMoonThin size={25}></PiMoonThin>
                             ) : (
-                                <BiSun size={25}></BiSun>
+                                <PiSunLight size={25}></PiSunLight>
                             )}
                         </button>
+                        <div className="relative">
+                            <PiShoppingCartLight
+                                size={25}></PiShoppingCartLight>
+                            <span className="absolute -top-1/2 -right-1/2 bg-primary dark:bg-slate-100 dark:text-slate-900 font-medium leading-4 text-white text-center text-xs rounded-full w-4 h-4">
+                                0
+                            </span>
+                        </div>
                         <button>
-                            <BiCart size={25}></BiCart>
-                        </button>
-                        <button>
-                            <Link to='/add-product'><BiPlusCircle size={25}></BiPlusCircle></Link>
+                            <Link to="/add-product">
+                                <PiPlusCircleLight
+                                    size={25}></PiPlusCircleLight>
+                            </Link>
                         </button>
                         <div className="text-lg">
                             {user ? (
@@ -76,10 +83,14 @@ const Header = () => {
                                                     Mohammad Ali
                                                 </li>
                                                 <li className="p-2 text-lg cursor-pointer rounded hover:bg-slate-100 dark:hover:bg-slate-700">
-                                                    <Link to='/add-brand'>Add Brand</Link>
+                                                    <Link to="/add-brand">
+                                                        Add Brand
+                                                    </Link>
                                                 </li>
                                                 <li className="p-2 text-lg cursor-pointer rounded hover:bg-slate-100 dark:hover:bg-slate-700">
-                                                    <Link to='/add-category'>Add Category</Link>
+                                                    <Link to="/add-category">
+                                                        Add Category
+                                                    </Link>
                                                 </li>
                                                 <li className="p-2 text-lg cursor-pointer rounded hover:bg-slate-100 dark:hover:bg-slate-700">
                                                     Profile
@@ -93,19 +104,21 @@ const Header = () => {
                                 </div>
                             ) : (
                                 <div>
-                                    <Link to='/login' className="hidden md:block bg-slate-800 border border-slate-500 text-slate-100 rounded-md py-2 px-3">
+                                    <Link
+                                        to="/login"
+                                        className="hidden md:block bg-slate-800 border border-slate-500 text-slate-100 rounded-md py-2 px-3">
                                         Login
                                     </Link>
-                                    <BiUserCircle
+                                    <PiUserCircleThin
                                         className="md:hidden"
-                                        size={25}></BiUserCircle>
+                                        size={25}></PiUserCircleThin>
                                 </div>
                             )}
                         </div>
                         <button
                             onClick={() => setOpen(!open)}
                             className="text-3xl md:hidden">
-                            {open ? <BiX></BiX> : <BiMenu></BiMenu>}
+                            {open ? <PiXThin></PiXThin> : <PiListThin></PiListThin>}
                         </button>
                     </div>
                     <div

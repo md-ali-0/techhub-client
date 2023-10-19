@@ -1,8 +1,20 @@
+import { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const AddProduct = () => {
     const categories = useLoaderData();
+    const [brands, setBrands] = useState([])
+    useEffect(()=>{
+        fetch('http://localhost:8080/brands')
+        .then(res=>res.json())
+        .then(data=>{
+            setBrands(data)
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    },[])
     const addProduct = (e) => {
         e.preventDefault();
         const form = e.target;
@@ -10,10 +22,11 @@ const AddProduct = () => {
         const image = form.image.value;
         const shortdescription = form.shortdescription.value;
         const category = form.category.value;
+        const brand = form.brand.value;
         const price = form.price.value;
         const rating = form.rating.value;
-        console.log(name, image, shortdescription, category, price, rating);
-        const newProduct = { name, image, shortdescription, category, price, rating };
+
+        const newProduct = { name, image, shortdescription, category, brand, price, rating };
         fetch('http://localhost:8080/add-product', {
             method: 'POST',
             body: JSON.stringify(newProduct),
@@ -98,6 +111,25 @@ const AddProduct = () => {
                                             key={category._id}
                                             defaultValue={category.name}>
                                             {category.name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
+                            <div className="py-2">
+                                <label
+                                    htmlFor="brand"
+                                    className="block text-lg py-2">
+                                    Select Brands:
+                                </label>
+                                <select
+                                    className="border focus:outline-none rounded py-2 px-3 dark:bg-slate-700 dark:text-slate-200 dark:border-slate-600 w-full"
+                                    name="brand"
+                                    id="brand">
+                                    {brands.map((brand) => (
+                                        <option
+                                            key={brand._id}
+                                            defaultValue={brand.name}>
+                                            {brand.name}
                                         </option>
                                     ))}
                                 </select>

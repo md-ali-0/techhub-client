@@ -17,7 +17,8 @@ const Router = createBrowserRouter([
                 element: <Home></Home>
             },
             {
-                path: '/brands',
+                path: '/brand/:name',
+                loader: ({params})=>fetch(`http://localhost:8080/brand/${params.name}`),
                 element: <Brands></Brands>
             },
             {

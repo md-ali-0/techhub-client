@@ -8,11 +8,13 @@ export default {
   theme: {
     extend: {
       colors: {
-        'primary': '#020617',
-        'secondary': '#DBE9FF',
+        'primary': '#1F2937',
+        'secondary': '#29303D',
+        'heading': '#292930',
+        'sub-heading': '#ff497c',
       },
       fontFamily: {
-        'open': ['Open Sans', 'sans-serif']
+        'Dm': ['DM Sans', 'sans-serif']
       }
     },
   },
