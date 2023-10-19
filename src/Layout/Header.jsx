@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import {
     PiListThin,
     PiMoonThin,
@@ -11,17 +11,13 @@ import {
 import { Link, NavLink } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { ThemeContext } from '../Context/ThemeContext';
 import dakLogo from '/dark-logo.png';
 import lightLogo from '/light-logo.png';
 import userLogo from '/user.png';
 
 const Header = () => {
-    const [darkMode, setDarkMode] = useState(false);
-    if (darkMode) {
-        document.documentElement.classList.add('dark');
-    } else {
-        document.documentElement.classList.remove('dark');
-    }
+    const {darkMode, setDarkMode} = useContext(ThemeContext)
     const user = true;
     const [open, setOpen] = useState(false);
     const [userProfile, setUserProfile] = useState(false);
