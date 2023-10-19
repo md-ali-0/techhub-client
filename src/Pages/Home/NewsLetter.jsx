@@ -9,8 +9,8 @@ const NewsLetter = () => {
                     <h4 className=" text-xl font-bold text-blue-700">Newsletter</h4>
                     <h3 className='text-3xl md:text-5xl dark:text-primary font-bold py-3'>Get weekly update</h3>
                     <div className='flex gap-3 pt-5'>
-                        <input type="email" className='bg-white focus:outline-none rounded py-3 px-5' placeholder='exampl@gmail.com'/>
-                        <button className='bg-primary rounded text-white py-3 px-5 w-auto'>Subscribe</button>
+                        <input type="email" className='bg-white focus:outline-none rounded-md py-3 px-5' placeholder='exampl@gmail.com'/>
+                        <button className='bg-primary rounded-md text-white py-3 px-5 w-auto'>Subscribe</button>
                     </div>
                 </div>
             </div>
