@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import { FaStar } from 'react-icons/fa';
-import { PiEyeThin, PiPencilSimpleThin, PiTrashThin } from 'react-icons/pi';
+import { PiEyeThin, PiPencilSimpleThin } from 'react-icons/pi';
 import { Link } from 'react-router-dom';
 
+
 const ProdutcsCard = ({ product }) => {
+
     return (
-        <div
-            key={product._id}
-            className="bg-white hover:shadow-lg border dark:border-0 duration-500 rounded-md dark:bg-secondary py-3">
+        <div className="bg-white hover:shadow-lg border dark:border-0 duration-500 rounded-md dark:bg-secondary py-3">
             <div className="flex justify-between items-center">
                 <img
                     src={product.image}
@@ -43,13 +43,14 @@ const ProdutcsCard = ({ product }) => {
                     <h3 className="text-md font-semibold">{product.name}</h3>
                 </div>
                 <div className="flex flex-col justify-center items-center gap-2 pr-3">
-                    <Link to={`/product/${product._id}`} className="border dark:border-slate-500 rounded p-2">
+                    <Link
+                        to={`/product/${product._id}`}
+                        className="border dark:border-slate-500 rounded p-2">
                         <PiEyeThin size={20}></PiEyeThin>
                     </Link>
-                    <button className="border dark:border-slate-500 rounded p-2">
-                        <PiTrashThin size={20}></PiTrashThin>
-                    </button>
-                    <Link to={`/product-edit/${product._id}`} className="border dark:border-slate-500 rounded p-2">
+                    <Link
+                        to={`/product-edit/${product._id}`}
+                        className="border dark:border-slate-500 rounded p-2">
                         <PiPencilSimpleThin size={20}></PiPencilSimpleThin>
                     </Link>
                 </div>
@@ -60,5 +61,5 @@ const ProdutcsCard = ({ product }) => {
 
 ProdutcsCard.propTypes = {
     product: PropTypes.object.isRequired,
-}
+};
 export default ProdutcsCard;

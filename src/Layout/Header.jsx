@@ -2,7 +2,6 @@ import { useContext, useState } from 'react';
 import {
     PiListThin,
     PiMoonThin,
-    PiPlusCircleLight,
     PiShoppingCartLight,
     PiSunLight,
     PiUserCircleThin,
@@ -17,7 +16,7 @@ import lightLogo from '/light-logo.png';
 import userLogo from '/user.png';
 
 const Header = () => {
-    const {darkMode, setDarkMode} = useContext(ThemeContext)
+    const { darkMode, setDarkMode } = useContext(ThemeContext);
     const user = true;
     const [open, setOpen] = useState(false);
     const [userProfile, setUserProfile] = useState(false);
@@ -51,12 +50,6 @@ const Header = () => {
                                 0
                             </span>
                         </div>
-                        <button>
-                            <Link to="/add-product">
-                                <PiPlusCircleLight
-                                    size={25}></PiPlusCircleLight>
-                            </Link>
-                        </button>
                         <div className="text-lg">
                             {user ? (
                                 <div className="relative">
@@ -89,9 +82,6 @@ const Header = () => {
                                                     </Link>
                                                 </li>
                                                 <li className="p-2 text-lg cursor-pointer rounded hover:bg-slate-100 dark:hover:bg-slate-700">
-                                                    Profile
-                                                </li>
-                                                <li className="p-2 text-lg cursor-pointer rounded hover:bg-slate-100 dark:hover:bg-slate-700">
                                                     Logout
                                                 </li>
                                             </ul>
@@ -114,7 +104,11 @@ const Header = () => {
                         <button
                             onClick={() => setOpen(!open)}
                             className="text-3xl md:hidden">
-                            {open ? <PiXThin></PiXThin> : <PiListThin></PiListThin>}
+                            {open ? (
+                                <PiXThin></PiXThin>
+                            ) : (
+                                <PiListThin></PiListThin>
+                            )}
                         </button>
                     </div>
                     <div
@@ -135,17 +129,6 @@ const Header = () => {
                             </li>
                             <li>
                                 <NavLink
-                                    to="/brands"
-                                    className={({ isActive }) =>
-                                        isActive
-                                            ? 'border-b-2 border-slate-800 dark:border-slate-500'
-                                            : ''
-                                    }>
-                                    Brands
-                                </NavLink>
-                            </li>
-                            <li>
-                                <NavLink
                                     to="/products"
                                     className={({ isActive }) =>
                                         isActive
@@ -153,6 +136,17 @@ const Header = () => {
                                             : ''
                                     }>
                                     Products
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to="/add-product"
+                                    className={({ isActive }) =>
+                                        isActive
+                                            ? 'border-b-2 border-slate-800 dark:border-slate-500'
+                                            : ''
+                                    }>
+                                    Add Product
                                 </NavLink>
                             </li>
                         </ul>

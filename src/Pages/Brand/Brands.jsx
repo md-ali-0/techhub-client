@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css'; // requires a loader
 import { useLoaderData, useParams } from 'react-router-dom';
@@ -8,7 +9,7 @@ import ImageThree from '/slider/slider-3.png';
 const Brands = () => {
     const { name } = useParams();
     const bandProducts = useLoaderData();
-    console.log(bandProducts);
+    useEffect(() => { window.scrollTo(0, 0) }, [])
     return (
         <div className="container mx-auto">
             <section className="py-5 px-3">

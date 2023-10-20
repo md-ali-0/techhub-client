@@ -1,27 +1,74 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { FaStar } from 'react-icons/fa';
 import { PiSealCheckThin } from 'react-icons/pi';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData, useNavigate } from 'react-router-dom';
+import Swal from 'sweetalert2';
+import useDataload from '../../Utilities/useDataload';
 import ProdutcsCard from './ProdutcsCard';
 
 const SingleProduct = () => {
+    const navigate = useNavigate();
     const product = useLoaderData();
-    const [relatedProducts, setRelatedProducts] = useState([]);
+    const loadRelatedProducts = useDataload(
+        `http://localhost:8080/category/${product.category}`,
+    );
+    const relatedProducts = loadRelatedProducts.filter(relatedProduct =>relatedProduct._id !== product._id)
     useEffect(() => {
-        fetch(`http://localhost:8080/category/${product.category}`)
-            .then((res) => res.json())
-            .then((data) => {
-                setRelatedProducts(data);
-            })
-            .catch((err) => {
-                console.log(err);
-            });
-    }, [product.category]);
+        window.scrollTo(0, 0);
+    }, []);
+    const deleteProduct = async (id) => {
+        const response = await Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!',
+        });
+        if (response.isConfirmed) {
+            try {
+                const res = await fetch(
+                    `http://localhost:8080/delete-product/${id}`,
+                    {
+                        method: 'DELETE',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                    },
+                );
+                const data = await res.json();
+                if (data.deletedCount) {
+                    const res = Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success',
+                    );
+                    if (res) {
+                        navigate('/products')
+                    }
+                }
+            } catch (err) {
+                console.error(err);
+                Swal.fire('Erorr', 'Something Went Wrong :)', 'error');
+            }
+        } else if (response.dismiss === Swal.DismissReason.cancel) {
+            Swal.fire('Cancelled', 'Your imaginary file is safe :)', 'error');
+        }
+    };
     return (
         <div className="container mx-auto py-5">
-            <div className='flex justify-end gap-2'>
-                <Link to={`/product-edit/${product._id}`} className='bg-primary dark:bg-slate-200 text-white dark:text-primary rounded py-1 px-2'>Edit</Link>
-                <button className='bg-red-700  text-white rounded py-1 px-2'>Delete</button>
+            <div className="flex justify-end gap-2">
+                <Link
+                    to={`/product-edit/${product._id}`}
+                    className="bg-primary dark:bg-slate-200 text-white dark:text-primary rounded py-1 px-2">
+                    Edit
+                </Link>
+                <button
+                    onClick={() => deleteProduct(product._id)}
+                    className="bg-red-700  text-white rounded py-1 px-2">
+                    Delete
+                </button>
             </div>
             <div className="flex flex-col md:flex-row items-center justify-evenly gap-3 py-5">
                 <div>
@@ -60,7 +107,7 @@ const SingleProduct = () => {
                         {product.brand}
                     </Link>
                     <Link
-                        className='block text-md font-medium pt-3'
+                        className="block text-md font-medium pt-3"
                         to={`/category/${product.category}`}>
                         Type: {product.category}
                     </Link>
@@ -97,7 +144,7 @@ const SingleProduct = () => {
                 </h3>
                 {relatedProducts.length !== 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-                        {relatedProducts.slice(0,3).map((product) => (
+                        {relatedProducts.slice(0, 3).map((product) => (
                             <ProdutcsCard
                                 key={product._id}
                                 product={product}></ProdutcsCard>

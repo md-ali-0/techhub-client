@@ -1,19 +1,31 @@
 import { useEffect, useState } from 'react';
 import { PiOctagon } from 'react-icons/pi';
+import Loading from '../../components/Loading';
 import ProdutcsCard from './ProdutcsCard';
 
 const Products = () => {
     const [products, setProducts] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
     useEffect(() => {
-        fetch('http://localhost:8080/products')
-            .then((res) => res.json())
-            .then((data) => {
+        const loadProduct = async () => {
+            setIsLoading(true)
+            try {
+                const res = await fetch('http://localhost:8080/products');
+                const data = await res.json();
                 setProducts(data);
-            })
-            .catch((err) => {
+            } catch (err) {
                 console.log(err);
-            });
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        loadProduct();
+        window.scrollTo(0, 0);
     }, []);
+
+    if (isLoading) {
+        return <Loading></Loading>;
+    }
     return (
         <section className="container mx-auto py-5 px-3">
             <h4 className="text-sub-heading font-bold flex items-center gap-2">
