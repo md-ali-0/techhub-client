@@ -4,6 +4,7 @@ import AddBrand from "../Pages/Brand/AddBrand";
 import Brands from "../Pages/Brand/Brands";
 import AddCategory from "../Pages/Categories/AddCategory";
 import Categories from "../Pages/Categories/Categories";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home";
 import AddProduct from "../Pages/Product/AddProduct";
 import Products from "../Pages/Product/Products";
@@ -14,6 +15,7 @@ const Router = createBrowserRouter([
     {
         path: '/',
         element: <Root></Root>,
+        errorElement: <ErrorPage></ErrorPage>,
         children: [
             {
                 path: '/',
