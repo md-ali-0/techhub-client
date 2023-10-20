@@ -1,12 +1,28 @@
+import { useEffect, useState } from 'react';
 import { FaStar } from 'react-icons/fa';
 import { PiSealCheckThin } from 'react-icons/pi';
 import { Link, useLoaderData } from 'react-router-dom';
+import ProdutcsCard from './ProdutcsCard';
 
 const SingleProduct = () => {
     const product = useLoaderData();
-    console.log(product);
+    const [relatedProducts, setRelatedProducts] = useState([]);
+    useEffect(() => {
+        fetch(`http://localhost:8080/category/${product.category}`)
+            .then((res) => res.json())
+            .then((data) => {
+                setRelatedProducts(data);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    }, [product.category]);
     return (
         <div className="container mx-auto py-5">
+            <div className='flex justify-end gap-2'>
+                <Link to={`/product-edit/${product._id}`} className='bg-primary dark:bg-slate-200 text-white dark:text-primary rounded py-1 px-2'>Edit</Link>
+                <button className='bg-red-700  text-white rounded py-1 px-2'>Delete</button>
+            </div>
             <div className="flex flex-col md:flex-row items-center justify-evenly gap-3 py-5">
                 <div>
                     <img
@@ -43,6 +59,11 @@ const SingleProduct = () => {
                         to={`/brand/${product.brand}`}>
                         {product.brand}
                     </Link>
+                    <Link
+                        className='block text-md font-medium pt-3'
+                        to={`/category/${product.category}`}>
+                        Type: {product.category}
+                    </Link>
                     <hr className="h-px my-3 bg-gray-200 border-0 dark:bg-gray-700" />
 
                     <ul className="text-blue-600 font-bold space-y-1">
@@ -68,6 +89,25 @@ const SingleProduct = () => {
             <div className="w-3/4 mx-auto">
                 <h3>Description:</h3>
                 <p>{product.shortdescription}</p>
+                <h3 className="text-3xl text-heading dark:text-slate-300 underline underline-offset-4 font-bold py-2 my-5">
+                    Related Products
+                    <span className="text-sub-heading underline underline-offset-4">
+                        {name}
+                    </span>
+                </h3>
+                {relatedProducts.length !== 0 ? (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                        {relatedProducts.slice(0,3).map((product) => (
+                            <ProdutcsCard
+                                key={product._id}
+                                product={product}></ProdutcsCard>
+                        ))}
+                    </div>
+                ) : (
+                    <div className="flex justify-center items-center h-80">
+                        <p className="text-xl font-bold">No Product Found</p>
+                    </div>
+                )}
             </div>
         </div>
     );

@@ -21,7 +21,7 @@ const CategorySection = () => {
             <div className="grid grid-cols-2 md:grid-cols-4 gap-5">
                 {categories.map((category) => (
                     <div key={category._id} className='bg-white hover:shadow-lg duration-500 rounded-md dark:bg-secondary border dark:border-0 py-3 px-3'>
-                        <Link to={`/category/${category._id}`}>
+                        <Link to={`/category/${category.name}`}>
                             <img
                                 className="mx-auto rounded-md"
                                 src={category.image}
