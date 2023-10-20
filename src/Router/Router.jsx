@@ -13,6 +13,7 @@ import AddProduct from "../Pages/Product/AddProduct";
 import Products from "../Pages/Product/Products";
 import SingleProduct from "../Pages/Product/SingleProduct";
 import UpdateProduct from "../Pages/Product/UpdateProduct";
+import PrivateRouter from "./PrivateRouter";
 
 const Router = createBrowserRouter([
     {
@@ -25,45 +26,8 @@ const Router = createBrowserRouter([
                 element: <Home></Home>
             },
             {
-                path: '/brand/:name',
-                loader: ({params})=>fetch(`http://localhost:8080/brand/${params.name}`),
-                element: <Brands></Brands>
-            },
-            {
-                path: '/category/:name',
-                loader: ({params})=>fetch(`http://localhost:8080/category/${params.name}`),
-                element: <Categories></Categories>
-            },
-            {
-                path: '/products',
-                element: <Products></Products>
-            },
-            {
-                path: '/product/:id',
-                loader: ({params})=>fetch(`http://localhost:8080/product/${params.id}`),
-                element: <SingleProduct></SingleProduct>
-            },
-            {
-                path: '/product-edit/:id',
-                loader: ({params})=>fetch(`http://localhost:8080/product/${params.id}`),
-                element: <UpdateProduct></UpdateProduct>
-            },
-            {
-                path: '/add-brand',
-                element: <AddBrand></AddBrand>
-            },
-            {
-                path: '/add-category',
-                element: <AddCategory></AddCategory>
-            },
-            {
-                path: '/add-product',
-                loader: ()=>fetch('http://localhost:8080/categories'),
-                element: <AddProduct></AddProduct>
-            },
-            {
                 path: '/cart',
-                element: <Cart></Cart>
+                element: <PrivateRouter><Cart></Cart></PrivateRouter>
             },
             {
                 path: '/login',
@@ -72,6 +36,43 @@ const Router = createBrowserRouter([
             {
                 path: '/register',
                 element: <Register></Register>
+            },
+            {
+                path: '/brand/:name',
+                loader: ({params})=>fetch(`http://localhost:8080/brand/${params.name}`),
+                element: <PrivateRouter><Brands></Brands></PrivateRouter>
+            },
+            {
+                path: '/category/:name',
+                loader: ({params})=>fetch(`http://localhost:8080/category/${params.name}`),
+                element: <PrivateRouter><Categories></Categories></PrivateRouter>
+            },
+            {
+                path: '/products',
+                element: <PrivateRouter><Products></Products></PrivateRouter>
+            },
+            {
+                path: '/product/:id',
+                loader: ({params})=>fetch(`http://localhost:8080/product/${params.id}`),
+                element: <PrivateRouter><SingleProduct></SingleProduct></PrivateRouter>
+            },
+            {
+                path: '/product-edit/:id',
+                loader: ({params})=>fetch(`http://localhost:8080/product/${params.id}`),
+                element: <PrivateRouter><UpdateProduct></UpdateProduct></PrivateRouter>
+            },
+            {
+                path: '/add-brand',
+                element: <PrivateRouter><AddBrand></AddBrand></PrivateRouter>
+            },
+            {
+                path: '/add-category',
+                element: <PrivateRouter><AddCategory></AddCategory></PrivateRouter>
+            },
+            {
+                path: '/add-product',
+                loader: ()=>fetch('http://localhost:8080/categories'),
+                element: <PrivateRouter><AddProduct></AddProduct></PrivateRouter>
             }
         ]
     }

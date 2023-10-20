@@ -15,7 +15,7 @@ import app from '../firebase/firebase.config';
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
-    const [isLoading, setIsLoading] = useState(false);
+    const [isLoading, setIsLoading] = useState(true);
     const [user, setUser] = useState(null);
 
     const auth = getAuth(app);
@@ -46,7 +46,9 @@ const AuthProvider = ({ children }) => {
         return signOut(auth);
     };
     useEffect(() => {
+
         const Unsbscribe = onAuthStateChanged(auth, currentuser=>{
+            setIsLoading(true)
             if (currentuser) {
                 setUser(currentuser)
             }else{

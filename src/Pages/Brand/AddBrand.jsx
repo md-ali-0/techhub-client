@@ -6,7 +6,6 @@ const AddBrand = () => {
         const form = e.target;
         const name = form.name.value;
         const image = form.image.value;
-        console.log(name, image);
         const newBrand = { name, image };
         fetch('http://localhost:8080/add-brand', {
             method: 'POST',
@@ -17,7 +16,6 @@ const AddBrand = () => {
         })
         .then(res=>res.json())
         .then(data=>{
-            console.log(data);
             if (data.insertedId) {
                 toast.success('Brand Added Successfully!')
                 form.reset()

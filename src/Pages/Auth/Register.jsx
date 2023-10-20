@@ -51,15 +51,13 @@ const Register = () => {
                 lastSignInTime: user.metadata?.lastSignInTime,
             };
             try {
-                const resposne = await fetch('http://localhost:8080/add-user', {
+                await fetch('http://localhost:8080/add-user', {
                     method: 'POST',
                     body: JSON.stringify(newUser),
                     headers: {
                         'Content-Type': 'application/json',
                     },
                 });
-                const data = resposne.json();
-                console.log(data);
             } catch (error) {
                 console.log(error);
             }
@@ -90,8 +88,7 @@ const Register = () => {
                         },
                     })
                         .then((res) => res.json())
-                        .then((data) => {
-                            console.log(data);
+                        .then(() => {
                             toast.success('Login success!');
                             navigate(location?.state ? location.state : '/');
                         })

@@ -35,8 +35,7 @@ const Login = () => {
                         },
                     })
                         .then((res) => res.json())
-                        .then((data) => {
-                            console.log(data);
+                        .then(() => {
                             toast.success('Login success!');
                             navigate(location?.state ? location.state : '/');
                         })
@@ -70,8 +69,7 @@ const Login = () => {
                         },
                     })
                         .then((res) => res.json())
-                        .then((data) => {
-                            console.log(data);
+                        .then(() => {
                             toast.success('Login success!');
                             navigate(location?.state ? location.state : '/');
                         })

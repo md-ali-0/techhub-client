@@ -5,7 +5,8 @@ import { AuthContext } from "../../Context/AuthContext";
 import useDataload from "../../Utilities/useDataload";
 
 const Cart = () => {
-    const {user} = useContext(AuthContext)
+    const {user, isLoading} = useContext(AuthContext)
+    
     const email = user.email
     const cartProducts = useDataload(`http://localhost:8080/cart/${email}`)
     console.log(cartProducts);

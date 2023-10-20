@@ -6,7 +6,6 @@ const AddCategory = () => {
         const form = e.target;
         const name = form.name.value;
         const image = form.image.value;
-        console.log(name, image);
         const newCategory = { name, image };
         fetch('http://localhost:8080/add-category', {
             method: 'POST',
@@ -17,7 +16,6 @@ const AddCategory = () => {
         })
         .then(res=>res.json())
         .then(data=>{
-            console.log(data);
             if (data.insertedId) {
                 toast.success('Category Added Successfully!')
                 form.reset()

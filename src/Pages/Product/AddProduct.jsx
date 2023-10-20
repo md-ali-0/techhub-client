@@ -47,7 +47,6 @@ const AddProduct = () => {
         })
             .then((res) => res.json())
             .then((data) => {
-                console.log(data);
                 if (data.insertedId) {
                     toast.success('Product Added Successfully!');
                     form.reset();
