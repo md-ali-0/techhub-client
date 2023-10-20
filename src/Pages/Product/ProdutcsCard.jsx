@@ -14,7 +14,7 @@ const ProdutcsCard = ({ product }) => {
                     className="w-32 rounded-md px-5"
                     alt=""
                 />
-                <div className="">
+                <div>
                     <div className="flex items-center gap-2">
                         <div>
                             {[...Array(5)].map((num, idx) => {
@@ -43,7 +43,7 @@ const ProdutcsCard = ({ product }) => {
                     <h3 className="text-md font-semibold">{product.name}</h3>
                 </div>
                 <div className="flex flex-col justify-center items-center gap-2 pr-3">
-                    <Link className="border dark:border-slate-500 rounded p-2">
+                    <Link to={`/product/${product._id}`} className="border dark:border-slate-500 rounded p-2">
                         <PiEyeThin size={20}></PiEyeThin>
                     </Link>
                     <Link className="border dark:border-slate-500 rounded p-2">
@@ -54,8 +54,6 @@ const ProdutcsCard = ({ product }) => {
                     </button>
                 </div>
             </div>
-
-            <Link to={`/product/${product._id}`}></Link>
         </div>
     );
 };
