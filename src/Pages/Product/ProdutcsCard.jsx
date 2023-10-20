@@ -46,12 +46,12 @@ const ProdutcsCard = ({ product }) => {
                     <Link to={`/product/${product._id}`} className="border dark:border-slate-500 rounded p-2">
                         <PiEyeThin size={20}></PiEyeThin>
                     </Link>
-                    <Link className="border dark:border-slate-500 rounded p-2">
-                        <PiTrashThin size={20}></PiTrashThin>
-                    </Link>
                     <button className="border dark:border-slate-500 rounded p-2">
-                        <PiPencilSimpleThin size={20}></PiPencilSimpleThin>
+                        <PiTrashThin size={20}></PiTrashThin>
                     </button>
+                    <Link to={`/product-edit/${product._id}`} className="border dark:border-slate-500 rounded p-2">
+                        <PiPencilSimpleThin size={20}></PiPencilSimpleThin>
+                    </Link>
                 </div>
             </div>
         </div>
