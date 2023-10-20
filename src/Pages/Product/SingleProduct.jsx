@@ -1,12 +1,14 @@
-import { useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { FaStar } from 'react-icons/fa';
 import { PiSealCheckThin } from 'react-icons/pi';
 import { Link, useLoaderData, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import { AuthContext } from '../../Context/AuthContext';
 import useDataload from '../../Utilities/useDataload';
 import ProdutcsCard from './ProdutcsCard';
 
 const SingleProduct = () => {
+    const { user } = useContext(AuthContext)
     const navigate = useNavigate();
     const product = useLoaderData();
     const loadRelatedProducts = useDataload(
@@ -56,6 +58,31 @@ const SingleProduct = () => {
             Swal.fire('Cancelled', 'Your imaginary file is safe :)', 'error');
         }
     };
+    const addToCart = ()=>{
+        const email = user.email;
+
+        const cartProduct = {
+            email:email,
+            productName: product.name,
+            productImage: product.image,
+            productBrand: product.brand,
+            productPrice: product.price
+        }
+        fetch('http://localhost:8080/add-cart',{
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(cartProduct)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data);
+        })
+        .catch(err=>{
+            console.log(err);
+        })
+    }
     return (
         <div className="container mx-auto py-5">
             <div className="flex justify-end gap-2">
@@ -127,7 +154,7 @@ const SingleProduct = () => {
                             Free delivery available
                         </li>
                     </ul>
-                    <button className="bg-primary border border-primary dark:border-slate-100 text-slate-100 text-2xl rounded-md py-2 px-3 my-5">
+                    <button onClick={addToCart} className="bg-primary border border-primary dark:border-slate-100 text-slate-100 text-2xl rounded-md py-2 px-3 my-5">
                         Add to Cart
                     </button>
                 </div>

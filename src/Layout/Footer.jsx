@@ -13,7 +13,7 @@ const Footer = () => {
                     <Link to="/">
                         <img
                             src={darkMode ? dakLogo : lightLogo}
-                            className="w-36 mx-auto "
+                            className="w-32 mx-auto "
                             alt="Tech Hub"
                         />
                     </Link>

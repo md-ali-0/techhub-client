@@ -1,7 +1,10 @@
 import { createBrowserRouter } from "react-router-dom";
 import Root from "../Layout/Root";
+import Login from "../Pages/Auth/Login";
+import Register from "../Pages/Auth/Register";
 import AddBrand from "../Pages/Brand/AddBrand";
 import Brands from "../Pages/Brand/Brands";
+import Cart from "../Pages/Cart/Cart";
 import AddCategory from "../Pages/Categories/AddCategory";
 import Categories from "../Pages/Categories/Categories";
 import ErrorPage from "../Pages/ErrorPage/ErrorPage";
@@ -57,6 +60,18 @@ const Router = createBrowserRouter([
                 path: '/add-product',
                 loader: ()=>fetch('http://localhost:8080/categories'),
                 element: <AddProduct></AddProduct>
+            },
+            {
+                path: '/cart',
+                element: <Cart></Cart>
+            },
+            {
+                path: '/login',
+                element: <Login></Login>
+            },
+            {
+                path: '/register',
+                element: <Register></Register>
             }
         ]
     }

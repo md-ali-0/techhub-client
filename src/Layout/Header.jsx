@@ -8,27 +8,41 @@ import {
     PiXThin
 } from 'react-icons/pi';
 import { Link, NavLink } from 'react-router-dom';
-import { ToastContainer } from 'react-toastify';
+import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AuthContext } from '../Context/AuthContext';
 import { ThemeContext } from '../Context/ThemeContext';
+import Loading from '../components/Loading';
 import dakLogo from '/dark-logo.png';
 import lightLogo from '/light-logo.png';
 import userLogo from '/user.png';
 
 const Header = () => {
+    const {user, logOut, isLoading } = useContext(AuthContext)
     const { darkMode, setDarkMode } = useContext(ThemeContext);
-    const user = true;
     const [open, setOpen] = useState(false);
     const [userProfile, setUserProfile] = useState(false);
 
+    if (isLoading) {
+        return <Loading></Loading>
+    }
+    const logoutHandle = ()=>{
+        logOut()
+        .then(() => {
+            toast.success('LogOut success!');
+        })
+        .catch(() => {
+            toast.error('LogOut Error!');
+        });
+    }
     return (
-        <header className="shadow bg-white dark:bg-[#111827] dark:text-gray-100 duration-100">
+        <header className="sticky top-0 z-50 shadow bg-white dark:bg-[#111827] dark:text-gray-100 duration-100">
             <div className="container mx-auto px-3">
                 <nav className="flex justify-between flex-wrap items-center py-6">
                     <Link to="/">
                         <img
                             src={darkMode ? dakLogo : lightLogo}
-                            className="w-36 mr-3"
+                            className="w-32 mr-3"
                             alt="Tech Hub"
                         />
                     </Link>
@@ -43,13 +57,8 @@ const Header = () => {
                                 <PiSunLight size={25}></PiSunLight>
                             )}
                         </button>
-                        <div className="relative">
-                            <PiShoppingCartLight
-                                size={25}></PiShoppingCartLight>
-                            <span className="absolute -top-1/2 -right-1/2 bg-primary dark:bg-slate-100 dark:text-slate-900 font-medium leading-4 text-white text-center text-xs rounded-full w-4 h-4">
-                                0
-                            </span>
-                        </div>
+                        <Link to='/cart'><PiShoppingCartLight
+                                size={25}></PiShoppingCartLight></Link>
                         <div className="text-lg">
                             {user ? (
                                 <div className="relative">
@@ -60,7 +69,7 @@ const Header = () => {
                                         className="flex justify-center">
                                         <img
                                             className="w-10 object-cover rounded-full border border-gray-300"
-                                            src={userLogo}
+                                            src={user?.photoURL?user.photoURL:userLogo}
                                             alt=""
                                         />
                                     </button>
@@ -69,7 +78,7 @@ const Header = () => {
                                             className={`absolute right-0 top-[70px] z-50 bg-white dark:bg-slate-900 rounded shadow-xl w-52 p-4`}>
                                             <ul className="flex flex-col gap-2">
                                                 <li className="p-2 text-lg cursor-pointer rounded hover:bg-slate-100 dark:hover:bg-slate-700">
-                                                    Mohammad Ali
+                                                    {user?.displayName?user.displayName:'User Name'}
                                                 </li>
                                                 <li className="p-2 text-lg cursor-pointer rounded hover:bg-slate-100 dark:hover:bg-slate-700">
                                                     <Link to="/add-brand">
@@ -81,7 +90,7 @@ const Header = () => {
                                                         Add Category
                                                     </Link>
                                                 </li>
-                                                <li className="p-2 text-lg cursor-pointer rounded hover:bg-slate-100 dark:hover:bg-slate-700">
+                                                <li onClick={logoutHandle} className="p-2 text-lg cursor-pointer rounded hover:bg-slate-100 dark:hover:bg-slate-700">
                                                     Logout
                                                 </li>
                                             </ul>
