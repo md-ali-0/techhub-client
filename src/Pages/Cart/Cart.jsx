@@ -32,7 +32,6 @@ const Cart = () => {
                 },
             });
             const data = await res.json();
-            console.log(data);
             if (data.modifiedCount) {
                 const remainingCartProduct = cartProducts.filter(
                     (loadProduct) =>
