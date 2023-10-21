@@ -12,7 +12,7 @@ const Cart = () => {
     useEffect(() => {
         const fetchDataCartProducts = async () => {
             try {
-                const res = await fetch(`https://techhub-server-oh56wbkoz-mohammad-alis-projects.vercel.app/cart/${email}`);
+                const res = await fetch(`https://techhub-server-jmdtg788y-mohammad-alis-projects.vercel.app/cart/${email}`);
                 const data = await res.json();
                 await setCartProducts(data);
             } catch (error) {
@@ -24,7 +24,7 @@ const Cart = () => {
 
     const removeCartProduct = async (product) => {
         try {
-            const res = await fetch(`https://techhub-server-oh56wbkoz-mohammad-alis-projects.vercel.app/edit-cart`, {
+            const res = await fetch(`https://techhub-server-jmdtg788y-mohammad-alis-projects.vercel.app/edit-cart`, {
                 method: 'PUT',
                 body: JSON.stringify({ ...product, email }),
                 headers: {

@@ -7,7 +7,7 @@ const AddBrand = () => {
         const name = form.name.value;
         const image = form.image.value;
         const newBrand = { name, image };
-        fetch('https://techhub-server-oh56wbkoz-mohammad-alis-projects.vercel.app/add-brand', {
+        fetch('https://techhub-server-jmdtg788y-mohammad-alis-projects.vercel.app/add-brand', {
             method: 'POST',
             body: JSON.stringify(newBrand),
             headers: {

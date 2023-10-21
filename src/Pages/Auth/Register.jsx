@@ -52,7 +52,7 @@ const Register = () => {
                 lastSignInTime: user.metadata?.lastSignInTime,
             };
             try {
-                await fetch('https://techhub-server-oh56wbkoz-mohammad-alis-projects.vercel.app/add-user', {
+                await fetch('https://techhub-server-jmdtg788y-mohammad-alis-projects.vercel.app/add-user', {
                     method: 'POST',
                     body: JSON.stringify(newUser),
                     headers: {
@@ -81,7 +81,7 @@ const Register = () => {
                     lastSignInTime: user.metadata?.lastSignInTime,
                 };
                 try {
-                    fetch('https://techhub-server-oh56wbkoz-mohammad-alis-projects.vercel.app/edit-user', {
+                    fetch('https://techhub-server-jmdtg788y-mohammad-alis-projects.vercel.app/edit-user', {
                         method: 'PUT',
                         body: JSON.stringify(newUser),
                         headers: {
