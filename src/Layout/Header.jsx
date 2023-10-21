@@ -22,6 +22,7 @@ const Header = () => {
     const { darkMode, setDarkMode } = useContext(ThemeContext);
     const [open, setOpen] = useState(false);
     const [userProfile, setUserProfile] = useState(false);
+    
     if (isLoading) {
         return <Loading></Loading>
     }

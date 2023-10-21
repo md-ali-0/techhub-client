@@ -2,6 +2,7 @@ import { useContext, useEffect } from 'react';
 import { FaStar } from 'react-icons/fa';
 import { PiSealCheckThin } from 'react-icons/pi';
 import { Link, useLoaderData, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import Swal from 'sweetalert2';
 import { AuthContext } from '../../Context/AuthContext';
 import useDataload from '../../Utilities/useDataload';
@@ -77,7 +78,9 @@ const SingleProduct = () => {
         })
         .then(res=>res.json())
         .then(data=>{
-            console.log(data);
+            if (data.modifiedCount) {
+                toast.success('Added to Cart');
+            }
         })
         .catch(err=>{
             console.log(err);

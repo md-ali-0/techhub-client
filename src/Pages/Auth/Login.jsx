@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/AuthContext';
 
@@ -9,6 +9,7 @@ const Login = () => {
     const { googleLogin, createLogin, setIsLoading } = useContext(AuthContext);
     const navigate = useNavigate();
     const [err, setErr] = useState(null);
+    const location = useLocation();
     const [showPass, setShowPass] = useState(false);
     const handleLogin = (e) => {
         e.preventDefault();
