@@ -13,7 +13,7 @@ const SingleProduct = () => {
     const navigate = useNavigate();
     const product = useLoaderData();
     const loadRelatedProducts = useDataload(
-        `http://localhost:8080/category/${product.category}`,
+        `https://techhub-server-oh56wbkoz-mohammad-alis-projects.vercel.app/category/${product.category}`,
     );
     const relatedProducts = loadRelatedProducts.filter(relatedProduct =>relatedProduct._id !== product._id)
     useEffect(() => {
@@ -32,7 +32,7 @@ const SingleProduct = () => {
         if (response.isConfirmed) {
             try {
                 const res = await fetch(
-                    `http://localhost:8080/delete-product/${id}`,
+                    `https://techhub-server-oh56wbkoz-mohammad-alis-projects.vercel.app/delete-product/${id}`,
                     {
                         method: 'DELETE',
                         headers: {
@@ -69,7 +69,7 @@ const SingleProduct = () => {
             productBrand: product.brand,
             productPrice: product.price
         }
-        fetch('http://localhost:8080/add-cart',{
+        fetch('https://techhub-server-oh56wbkoz-mohammad-alis-projects.vercel.app/add-cart',{
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',

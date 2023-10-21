@@ -14,8 +14,8 @@ const UpdateProduct = () => {
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                const resBrand = await fetch('http://localhost:8080/brands');
-                const resCategory = await fetch('http://localhost:8080/categories');
+                const resBrand = await fetch('https://techhub-server-oh56wbkoz-mohammad-alis-projects.vercel.app/brands');
+                const resCategory = await fetch('https://techhub-server-oh56wbkoz-mohammad-alis-projects.vercel.app/categories');
 
                 const dataBrand = await resBrand.json();
                 const dataCategory = await resCategory.json();
@@ -47,7 +47,7 @@ const UpdateProduct = () => {
         const price = form.price.value;
         const rating = form.rating.value;
         const updatedProduct = { name, image, shortdescription, category, brand, price, rating };
-        fetch(`http://localhost:8080/edit-product/${id}`, {
+        fetch(`https://techhub-server-oh56wbkoz-mohammad-alis-projects.vercel.app/edit-product/${id}`, {
             method: 'PUT',
             body: JSON.stringify(updatedProduct),
             headers: {

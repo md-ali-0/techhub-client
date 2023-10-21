@@ -28,7 +28,7 @@ const Login = () => {
                         createdAt: user.metadata?.creationTime,
                         lastSignInTime: user.metadata?.lastSignInTime,
                     };
-                    fetch('http://localhost:8080/edit-user', {
+                    fetch('https://techhub-server-oh56wbkoz-mohammad-alis-projects.vercel.app/edit-user', {
                         method: 'PUT',
                         body: JSON.stringify(updateUser),
                         headers: {
@@ -62,7 +62,7 @@ const Login = () => {
                     lastSignInTime: user.metadata?.lastSignInTime,
                 };
                 try {
-                    fetch('http://localhost:8080/edit-user', {
+                    fetch('https://techhub-server-oh56wbkoz-mohammad-alis-projects.vercel.app/edit-user', {
                         method: 'PUT',
                         body: JSON.stringify(updateUser),
                         headers: {

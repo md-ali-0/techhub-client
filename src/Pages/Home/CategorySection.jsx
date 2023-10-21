@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import useDataload from '../../Utilities/useDataload';
 
 const CategorySection = () => {
-    const categories = useDataload('http://localhost:8080/categories');
+    const categories = useDataload('https://techhub-server-oh56wbkoz-mohammad-alis-projects.vercel.app/categories');
     return (
         <section className="container mx-auto py-5 px-3">
             <h4 className="text-sub-heading font-bold flex items-center gap-2">

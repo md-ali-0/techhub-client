@@ -3,7 +3,7 @@ import useDataload from '../../Utilities/useDataload';
 import ProdutcsCard from '../Product/ProdutcsCard';
 
 const ProductSection = () => {
-    const products = useDataload('http://localhost:8080/products');
+    const products = useDataload('https://techhub-server-oh56wbkoz-mohammad-alis-projects.vercel.app/products');
     return (
         <section className="container mx-auto py-5 px-3">
             <h4 className="text-sub-heading font-bold flex items-center gap-2">

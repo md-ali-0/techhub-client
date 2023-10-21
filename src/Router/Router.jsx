@@ -39,26 +39,26 @@ const Router = createBrowserRouter([
             },
             {
                 path: '/brand/:name',
-                loader: ({params})=>fetch(`http://localhost:8080/brand/${params.name}`),
+                loader: ({params})=>fetch(`https://techhub-server-oh56wbkoz-mohammad-alis-projects.vercel.app/brand/${params.name}`),
                 element: <PrivateRouter><Brands></Brands></PrivateRouter>
             },
             {
                 path: '/category/:name',
-                loader: ({params})=>fetch(`http://localhost:8080/category/${params.name}`),
+                loader: ({params})=>fetch(`https://techhub-server-oh56wbkoz-mohammad-alis-projects.vercel.app/category/${params.name}`),
                 element: <PrivateRouter><Categories></Categories></PrivateRouter>
             },
             {
                 path: '/products',
-                element: <PrivateRouter><Products></Products></PrivateRouter>
+                element: <Products></Products>
             },
             {
                 path: '/product/:id',
-                loader: ({params})=>fetch(`http://localhost:8080/product/${params.id}`),
+                loader: ({params})=>fetch(`https://techhub-server-oh56wbkoz-mohammad-alis-projects.vercel.app/product/${params.id}`),
                 element: <PrivateRouter><SingleProduct></SingleProduct></PrivateRouter>
             },
             {
                 path: '/product-edit/:id',
-                loader: ({params})=>fetch(`http://localhost:8080/product/${params.id}`),
+                loader: ({params})=>fetch(`https://techhub-server-oh56wbkoz-mohammad-alis-projects.vercel.app/product/${params.id}`),
                 element: <PrivateRouter><UpdateProduct></UpdateProduct></PrivateRouter>
             },
             {
@@ -71,7 +71,7 @@ const Router = createBrowserRouter([
             },
             {
                 path: '/add-product',
-                loader: ()=>fetch('http://localhost:8080/categories'),
+                loader: ()=>fetch('https://techhub-server-oh56wbkoz-mohammad-alis-projects.vercel.app/categories'),
                 element: <PrivateRouter><AddProduct></AddProduct></PrivateRouter>
             }
         ]

@@ -7,11 +7,11 @@ import { Link } from 'react-router-dom';
 const ProdutcsCard = ({ product }) => {
 
     return (
-        <div className="bg-white hover:shadow-lg border dark:border-0 duration-500 rounded-md dark:bg-secondary py-3">
+        <div className="relative bg-white hover:shadow-lg border dark:border-0 duration-500 rounded-md dark:bg-secondary py-3">
             <div className="flex justify-between items-center">
                 <img
                     src={product.image}
-                    className="w-32 rounded-md px-5"
+                    className="w-28 rounded-md px-5"
                     alt=""
                 />
                 <div>
@@ -34,9 +34,6 @@ const ProdutcsCard = ({ product }) => {
                     <h3 className="text-base text-gray-600 dark:text-white">
                         {product.brand}
                     </h3>
-                    <h3 className="text-sm text-primary dark:text-white my-1">
-                        {product.category}
-                    </h3>
                     <h3 className="text-lg text-primary dark:text-white font-semibold">
                         ৳ {product.price}
                     </h3>
@@ -54,6 +51,9 @@ const ProdutcsCard = ({ product }) => {
                         <PiPencilSimpleThin size={20}></PiPencilSimpleThin>
                     </Link>
                 </div>
+            </div>
+            <div className='absolute top-1 left-1'>
+                <h4 className={`text-white text-xs rounded py-0.5 px-1.5`} style={{backgroundColor: `${"#" + Math.floor(Math.random() * 16777215).toString(16)}`}}>{product.category}</h4>
             </div>
         </div>
     );

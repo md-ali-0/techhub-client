@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { FcGoogle } from 'react-icons/fc';
 import { FiEye, FiEyeOff } from 'react-icons/fi';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../Context/AuthContext';
 
@@ -9,6 +9,7 @@ const Register = () => {
     const { googleLogin, createRegister, editProfile, setIsLoading } =
         useContext(AuthContext);
     const navigate = useNavigate();
+    const location = useLocation();
     const [err, setErr] = useState(null);
     const [showPass, setShowPass] = useState(false);
 
@@ -20,7 +21,7 @@ const Register = () => {
         const displayName = form.name.value;
         const photoURL = form.photo.value;
         setErr(null);
-
+        
         const regexCap = /[A-Z]/;
         const regexSep = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/;
 
@@ -51,7 +52,7 @@ const Register = () => {
                 lastSignInTime: user.metadata?.lastSignInTime,
             };
             try {
-                await fetch('http://localhost:8080/add-user', {
+                await fetch('https://techhub-server-oh56wbkoz-mohammad-alis-projects.vercel.app/add-user', {
                     method: 'POST',
                     body: JSON.stringify(newUser),
                     headers: {
@@ -62,7 +63,7 @@ const Register = () => {
                 console.log(error);
             }
             toast.success('Registration success!');
-            navigate('/login');
+            navigate('/');
         } catch (err) {
             setErr(err.code);
             setIsLoading(false);
@@ -80,7 +81,7 @@ const Register = () => {
                     lastSignInTime: user.metadata?.lastSignInTime,
                 };
                 try {
-                    fetch('http://localhost:8080/edit-user', {
+                    fetch('https://techhub-server-oh56wbkoz-mohammad-alis-projects.vercel.app/edit-user', {
                         method: 'PUT',
                         body: JSON.stringify(newUser),
                         headers: {

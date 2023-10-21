@@ -9,7 +9,9 @@ import ImageThree from '/slider/slider-3.png';
 const Brands = () => {
     const { name } = useParams();
     const bandProducts = useLoaderData();
-    useEffect(() => { window.scrollTo(0, 0) }, [])
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     return (
         <div className="container mx-auto">
             <section className="py-5 px-3">
@@ -25,8 +27,7 @@ const Brands = () => {
                     infiniteLoop={true}
                     swipeable={true}
                     interval={200}
-                    transitionTime={100}
-                    >
+                    transitionTime={100}>
                     <div>
                         <img src={ImageThree} />
                     </div>
@@ -38,7 +39,7 @@ const Brands = () => {
                     </div>
                 </Carousel>
                 {bandProducts.length !== 0 ? (
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-10">
                         {bandProducts.map((product) => (
                             <ProdutcsCard
                                 key={product._id}

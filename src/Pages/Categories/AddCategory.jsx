@@ -7,7 +7,7 @@ const AddCategory = () => {
         const name = form.name.value;
         const image = form.image.value;
         const newCategory = { name, image };
-        fetch('http://localhost:8080/add-category', {
+        fetch('https://techhub-server-oh56wbkoz-mohammad-alis-projects.vercel.app/add-category', {
             method: 'POST',
             body: JSON.stringify(newCategory),
             headers: {

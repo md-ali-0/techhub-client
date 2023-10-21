@@ -5,7 +5,7 @@ import {
     PiShoppingCartLight,
     PiSunLight,
     PiUserCircleThin,
-    PiXThin
+    PiXThin,
 } from 'react-icons/pi';
 import { Link, NavLink } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
@@ -18,24 +18,24 @@ import lightLogo from '/light-logo.png';
 import userLogo from '/user.png';
 
 const Header = () => {
-    const {user, logOut, isLoading } = useContext(AuthContext)
+    const { user, logOut, isLoading } = useContext(AuthContext);
     const { darkMode, setDarkMode } = useContext(ThemeContext);
     const [open, setOpen] = useState(false);
     const [userProfile, setUserProfile] = useState(false);
-    
+
     if (isLoading) {
-        return <Loading></Loading>
+        return <Loading></Loading>;
     }
-    
-    const logoutHandle = ()=>{
+
+    const logoutHandle = () => {
         logOut()
-        .then(() => {
-            toast.success('LogOut success!');
-        })
-        .catch(() => {
-            toast.error('LogOut Error!');
-        });
-    }
+            .then(() => {
+                toast.success('LogOut success!');
+            })
+            .catch(() => {
+                toast.error('LogOut Error!');
+            });
+    };
     return (
         <header className="sticky top-0 z-50 shadow bg-white dark:bg-[#111827] dark:text-gray-100 duration-100">
             <div className="container mx-auto px-3">
@@ -58,8 +58,10 @@ const Header = () => {
                                 <PiSunLight size={25}></PiSunLight>
                             )}
                         </button>
-                        <Link to='/cart'><PiShoppingCartLight
-                                size={25}></PiShoppingCartLight></Link>
+                        <Link to="/cart">
+                            <PiShoppingCartLight
+                                size={25}></PiShoppingCartLight>
+                        </Link>
                         <div className="text-lg">
                             {user ? (
                                 <div className="relative">
@@ -70,7 +72,11 @@ const Header = () => {
                                         className="flex justify-center">
                                         <img
                                             className="w-10 object-cover rounded-full border border-gray-300"
-                                            src={user?.photoURL?user.photoURL:userLogo}
+                                            src={
+                                                user?.photoURL
+                                                    ? user.photoURL
+                                                    : userLogo
+                                            }
                                             alt=""
                                         />
                                     </button>
@@ -79,7 +85,9 @@ const Header = () => {
                                             className={`absolute right-0 top-[70px] z-50 bg-white dark:bg-slate-900 rounded shadow-xl w-52 p-4`}>
                                             <ul className="flex flex-col gap-2">
                                                 <li className="p-2 text-lg cursor-pointer rounded hover:bg-slate-100 dark:hover:bg-slate-700">
-                                                    {user?.displayName?user.displayName:'User Name'}
+                                                    {user?.displayName
+                                                        ? user.displayName
+                                                        : 'User Name'}
                                                 </li>
                                                 <li className="p-2 text-lg cursor-pointer rounded hover:bg-slate-100 dark:hover:bg-slate-700">
                                                     <Link to="/add-brand">
@@ -91,7 +99,9 @@ const Header = () => {
                                                         Add Category
                                                     </Link>
                                                 </li>
-                                                <li onClick={logoutHandle} className="p-2 text-lg cursor-pointer rounded hover:bg-slate-100 dark:hover:bg-slate-700">
+                                                <li
+                                                    onClick={logoutHandle}
+                                                    className="p-2 text-lg cursor-pointer rounded hover:bg-slate-100 dark:hover:bg-slate-700">
                                                     Logout
                                                 </li>
                                             </ul>
@@ -105,9 +115,11 @@ const Header = () => {
                                         className="hidden md:block bg-slate-800 border border-slate-500 text-slate-100 rounded-md py-2 px-3">
                                         Login
                                     </Link>
-                                    <PiUserCircleThin
-                                        className="md:hidden"
-                                        size={25}></PiUserCircleThin>
+                                    <Link to="/login">
+                                        <PiUserCircleThin
+                                            className="md:hidden"
+                                            size={25}></PiUserCircleThin>
+                                    </Link>
                                 </div>
                             )}
                         </div>
