@@ -4,7 +4,7 @@ import useDataload from '../../Utilities/useDataload';
 
 const BrandsSection = () => {
 
-    const brands = useDataload('https://techhub-server-jmdtg788y-mohammad-alis-projects.vercel.app/brands')
+    const brands = useDataload('https://techhub-server-five.vercel.app/brands')
     
     return (
         <section className="container mx-auto py-5 px-3">

@@ -10,7 +10,7 @@ const Products = () => {
         const loadProduct = async () => {
             setIsLoading(true)
             try {
-                const res = await fetch('https://techhub-server-jmdtg788y-mohammad-alis-projects.vercel.app/products');
+                const res = await fetch('https://techhub-server-five.vercel.app/products');
                 const data = await res.json();
                 setProducts(data);
             } catch (err) {

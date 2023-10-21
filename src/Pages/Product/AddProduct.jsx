@@ -11,7 +11,7 @@ const AddProduct = () => {
         const fetchData = async () => {
             setIsLoading(true);
             try {
-                const resBrand = await fetch('https://techhub-server-jmdtg788y-mohammad-alis-projects.vercel.app/brands');
+                const resBrand = await fetch('https://techhub-server-five.vercel.app/brands');
                 const dataBrand = await resBrand.json();
                 setBrands(dataBrand);
             } catch (err) {
@@ -38,7 +38,7 @@ const AddProduct = () => {
         const rating = form.rating.value;
 
         const newProduct = { name, image, shortdescription, category, brand, price, rating };
-        fetch('https://techhub-server-jmdtg788y-mohammad-alis-projects.vercel.app/add-product', {
+        fetch('https://techhub-server-five.vercel.app/add-product', {
             method: 'POST',
             body: JSON.stringify(newProduct),
             headers: {
